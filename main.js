@@ -66,20 +66,12 @@ class Player {
     moveRight() {
         this.x += 10;
     }
-    // touchBoot(boot) {
-    //     return (
-    //         this.x < boot.x + boot.width &&
-    //         this.x + this.width > boot.x &&
-    //         this.y < boot.y + boot.height &&
-    //         this.y + this.height > boot.y
-    //     );
-    // }
-    touchBoot(shooter) {
+    touchBoot(boot) {
         return (
-            this.x < shooter.x + shooter.width &&
-            this.x + this.width > shooter.x &&
-            this.y < shooter.y + shooter.height &&
-            this.y + this.height > shooter.y
+            this.x < boot.x + boot.width &&
+            this.x + this.width > boot.x &&
+            this.y < boot.y + boot.height &&
+            this.y + this.height > boot.y
         );
     }
     shoot() {
@@ -108,7 +100,7 @@ class Boot {
         this.width = 80;
         this.height = 110;
         this.hp = 250;
-        this.x = canvas.width - this.width;
+        this.x = canvas.width - (this.width * 2);
         this.y = canvas.height - this.height - 40;
         this.img = new Image();
         this.img.src = boot1;
@@ -142,19 +134,23 @@ class Boot {
             this.y + this.height > shooter.y
         );
     }
+    shoot() {
+        const w2 = new Shooter2(this.x + this.width, this.y + this.height / 1.5);
+        shoots.push(w2);
+    }
 }
 
 class Shooter2 {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.width = 70;
-        this.height = 15;
+        this.width = -70;
+        this.height = -15;
         this.img = new Image();
         this.img.src = shooting1;
     }
     draw() {
-        this.x += 10;
+        this.x -= 10;
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 }
@@ -322,6 +318,6 @@ addEventListener("keypress", function (e) {
 });
 addEventListener("keyup", function (e) {
     if (e.keyCode === 37) {
-        player.shoot();
+        boot.shoot();
     }
 });
