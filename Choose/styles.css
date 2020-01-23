@@ -1,0 +1,6 @@
+html {
+    background-image: url(imagen/fondo.jpg);
+    background-size: cover;
+      background-repeat: no-repeat;
+    height: vh80;
+}
