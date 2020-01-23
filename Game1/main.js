@@ -12,7 +12,7 @@ const ally2 = "images/Chewbacca.png";
 const shooting1 = "images/disparo1.png";
 const shooting2 = "images/disparo2.png";
 // Fondo
-const bg = "images/FondoNaves.png";
+const bg = "images/FondoTattoine.png";
 const lose = "images/GameOver.png";
 const won = "images/You Win.png";
 let interval;
@@ -207,6 +207,7 @@ function start() {
   if (interval) return;
   interval = setInterval(update, 1000 / 60);
 }
+
 function gameOver() {
   clearInterval(interval);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -237,6 +238,7 @@ function drawShoots() {
   shootsPlayer.forEach(shoot => shoot.draw());
   shootsBoot.forEach(shoot => shoot.draw());
 }
+
 function checkCollition() {
   //   allies.forEach(ally => {
   //     if (player.touchBoot(ally)) {
@@ -254,6 +256,7 @@ function checkCollition() {
     win();
   }
 }
+
 function checkCollition2() {
   //   allies.forEach(ally => {
   //     if (boot.touchPlayer(ally)) {
@@ -274,6 +277,7 @@ function checkCollition2() {
     win();
   }
 }
+
 function drawLife() {
   ctx.fillStyle = "white";
   ctx.fillRect(25, 25, 350, 40);
@@ -306,7 +310,7 @@ start();
 //   }
 // });
 
-addEventListener("keyup", function(e) {
+addEventListener("keyup", function (e) {
   console.log(e.keyCode);
   switch (e.keyCode) {
     case 79:
@@ -328,7 +332,7 @@ addEventListener("keyup", function(e) {
   }
 });
 
-addEventListener("keyup", function(e) {
+addEventListener("keyup", function (e) {
   switch (e.keyCode) {
     case 68:
       player.shoot();
