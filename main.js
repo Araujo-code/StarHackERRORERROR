@@ -93,7 +93,11 @@ class Player {
     this.x += 10;
   }
   touchPlayer(shooter) {
-    return this.x + this.width > shooter.x;
+    return (
+      this.x + this.width > shooter.x &&
+      this.y < shooter.y + shooter.height &&
+      this.y + this.height > shooter.y
+    );
   }
   shoot() {
     const w = new Shooter(this.x + this.width, this.y + this.height / 2 - 12);
@@ -262,6 +266,8 @@ function checkCollition2() {
       console.log("cc2 ---- damage");
       shootsBoot.splice(index, 1);
       player.damage();
+    } else if (shoot.x < 0) {
+      shootsBoot.splice(index, 1);
     }
   });
   if (player.hp === 0) {
@@ -275,7 +281,7 @@ function drawLife() {
   // ctx.drawImage()
   ctx.fillStyle = "red";
   ctx.fillRect(30, 30, (340 * player.hp) / 250, 30);
-  ctx.fillRect(canvas.width - 370, 30, (340 * boot.hp) / 250, 30);
+  ctx.fillRect(canvas.width - 30, 30, -((340 * boot.hp) / 250), 30);
 }
 start();
 // addEventListener("keypress", function(e) {
