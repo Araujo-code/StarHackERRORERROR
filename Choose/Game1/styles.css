@@ -1,0 +1,17 @@
+canvas {
+    border: 1px solid red;
+}
+
+div {
+    text-align: center;
+}
+
+body {
+    background-image: url(images/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    margin: 0;
+}
